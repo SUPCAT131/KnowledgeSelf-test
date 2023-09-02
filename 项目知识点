@@ -1,0 +1,2 @@
+1. 使用QList 作为函数返回值时，要声明列表内容 即 QList<int> Qlist<QString>
+2. 多线程调用python模块 仅第一次有效，第二次崩溃问题

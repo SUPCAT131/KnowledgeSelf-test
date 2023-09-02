@@ -1,0 +1,43 @@
+1. 使用OpenAI 对 提交的答案进行判定 ， 判定答案与参考答案的相关度
+2. 在 QT 中进行 C++ 与 Python 的混合编程，实现C++传参调用python函数，并接收python函数的返回值
+3. 在 QT 中进行sqlite数据库的创建，增删改查。
+
+# 1. OpenAI的调用方式
+
+import openai
+def check_reslt():
+    openai.api_key = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content":"需要提问的问题"}]
+    )
+    mssion = completion.choices[0].message.content
+    return mssion
+
+# 2. C++和Python的混合编程
+#include <Python.h>
+#include <iostream>
+#include <QDebug>
+#include <QApplication>
+#include <QString>
+
+Py_Initialize();
+if(!Py_IsInitialized())
+ {
+    qDebug()<<"Py_IsInitialized is null";
+ }
+PyRun_SimpleString("import sys");
+PyRun_SimpleString("sys.argv = ['python.py']");
+PyRun_SimpleString("sys.path.append('./')");
+
+    //加载模块，模块名称为testpython，就是testpython.py文件
+PyObject *pModule = PyImport_ImportModule("testpython");
+
+    //如果加载失败，则返回
+if(!pModule)
+{
+    qDebug()<<"pModule is null ";
+    return 0;
+}
+else
+{
