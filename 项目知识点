@@ -1,2 +1,8 @@
 1. 使用QList 作为函数返回值时，要声明列表内容 即 QList<int> Qlist<QString>
 2. 多线程调用python模块 仅第一次有效，第二次崩溃问题
+	问题参考 
+	https://blog.csdn.net/t15281180631/article/details/118942080#comments_25809580
+3. 有关QtPython混合编程 的 打包问题参考
+	 https://www.cnblogs.com/henkk/p/14977975.html
+	 https://zhuanlan.zhihu.com/p/476550568
+其余问题待整理
