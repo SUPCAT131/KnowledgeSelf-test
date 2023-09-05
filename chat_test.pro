@@ -38,7 +38,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    testpython.py \
+    py\testpython.py \
     版本更新 \
     项目技术点 \
     项目知识点 \
