@@ -1,13 +1,13 @@
-#include "widget.h"
+#include "../head/db_additem.h"
+#include "../head/database.h"
+#include "../head/widget.h"
 #include "ui_widget.h"
 #include <QtDebug>
 #include <QScrollArea>
-#include "database.h"
 #include <QSqlQuery>
 #include <QThread>
 #include <QMouseEvent>
 #include <QMessageBox>
-#include "db_additem.h"
 #include <QSqlError>
 
 static QList<int> selectlist;
@@ -82,7 +82,20 @@ Widget::Widget(QWidget *parent)
                 ui->pB_30->setStyleSheet("");
                 ui->pB_60->setStyleSheet("");
                 ui->pB_90->setStyleSheet("");
-                QString style = "border-color: rgb(46, 204, 113);border-width:2px;border-style: outset;background-color: rgb(0, 150, 0);";
+
+                ui->pB_0->setEnabled(true);
+                ui->pB_30->setEnabled(true);
+                ui->pB_60->setEnabled(true);
+                ui->pB_90->setEnabled(true);
+
+                QString style = {"background-color:rgb(26, 188, 156);"
+                                  "border-radius: 5px;"
+                                  "border-width: 1px;"
+//                                    "color: white; "
+                                  "border-style: outset;"
+                                  "border-color:rgb(26, 188, 156);}"
+                                  "QPushButton:hover{background-color:rgb(52, 152, 219);}"
+                                  "QPushButton:pressed{background-color:rgb(155, 89, 182);}"};
                 if(grade_l.size()>i)
                     switch (grade_l.at(i))
                     {
@@ -218,6 +231,7 @@ Widget::Widget(QWidget *parent)
 
 
 }
+#include <QElapsedTimer>
 
 Widget::~Widget()
 {
@@ -252,6 +266,11 @@ void Widget::widgetInit()
     ui->pB_30->setStyleSheet("");
     ui->pB_60->setStyleSheet("");
     ui->pB_90->setStyleSheet("");
+
+    ui->pB_0->setEnabled(false);
+    ui->pB_30->setEnabled(false);
+    ui->pB_60->setEnabled(false);
+    ui->pB_90->setEnabled(false);
 
     ui->progressBar->setValue(0);
 
@@ -307,8 +326,14 @@ void Widget::onStartClicked()
         int max = ui->spinBox->value();
         ui->progressBar->setRange(0,max);
         for (int i=0;i<max;i++) {
-            workQueue(i);
-            QThread::sleep(20);
+            QElapsedTimer timer;
+            timer.start(); // 启动定时器 查看函数执行时间
+            workQueue(i); // 执行操作函数
+            qint64 elapsed = timer.elapsed();
+            qDebug() << "Elapsed time:" << elapsed << "ms";
+            int sleeptime = 20-elapsed/1000+1;
+            QThread::sleep(sleeptime);
+            qDebug() << "sleeptime:" << sleeptime << "s";
             ui->progressBar->setValue(i+1);
         }
         ui->pB_sub->setText("提交评分");

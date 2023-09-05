@@ -1,11 +1,12 @@
+#include "../head/widget.h"
+#include "../head/pythreadstatelock.h"
 #include <Python.h>
 #include <iostream>
 #include <windows.h>
-#include "widget.h"
 #include <QDebug>
 #include <QApplication>
 #include <QString>
-#include "pythreadstatelock.h"
+
 using namespace std;
 
 void Widget::PythonInit()

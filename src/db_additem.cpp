@@ -1,9 +1,10 @@
-#include "db_additem.h"
+#include "../head/db_additem.h"
+#include "../head/database.h"
+#include "../head/widget.h"
 #include "ui_db_additem.h"
-#include "database.h"
 #include <QtDebug>
 #include <QMessageBox>
-#include <widget.h>
+
 int DB_AddItem::success = 0;
 int DB_AddItem::fail = 0;
 

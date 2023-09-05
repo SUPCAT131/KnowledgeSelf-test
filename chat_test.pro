@@ -16,21 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    database.cpp \
-    db_additem.cpp \
-    main.cpp \
-    msg_send_recv.cpp \
-    widget.cpp
+    src/database.cpp \
+    src/db_additem.cpp \
+    src/main.cpp \
+    src/msg_send_recv.cpp \
+    src/widget.cpp
 
 HEADERS += \
-    database.h \
-    db_additem.h \
-    pythreadstatelock.h \
-    widget.h
+    head/database.h \
+    head/db_additem.h \
+    head/pythreadstatelock.h \
+    head/widget.h
 
 FORMS += \
-    db_additem.ui \
-    widget.ui
+    ui/db_additem.ui \
+    ui/widget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -39,6 +39,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     testpython.py \
+    版本更新 \
     项目技术点 \
     项目知识点 \
     项目说明

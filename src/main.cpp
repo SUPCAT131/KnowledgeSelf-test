@@ -1,8 +1,8 @@
-#include "widget.h"
-
+#include "../head/db_additem.h"
+#include "../head/database.h"
+#include "../head/widget.h"
 #include <QApplication>
-#include "database.h"
-#include "db_additem.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
