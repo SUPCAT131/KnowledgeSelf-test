@@ -2,18 +2,40 @@
 #define DATABASE_H
 
 #include <QSqlDatabase>
+#include <QVariant>
 
-class database
+class Database
 {
 public:
-    database() {}
-    QSqlDatabase opendb(const QString &name);
-    void initdb(const QString &name);  // 初始化数据库
-    QList<QString> DBSearch(QSqlDatabase db,QString fahers="分类");                  // 数据库 根据字段名 查询 并返回列表
-    QList<QString> DBSearch(QSqlDatabase db,QString fathername,QString fathers="分类",QString children="小类");// 数据库 根据字段名 条件 查询 并返回列表
-    void initTable();
-    bool add_db(QSqlDatabase db,QString category, QString subCategory, QString question, QString answer);
-    QList<int> DBSelect(QSqlDatabase db,int max,QString fathername="无",QString childname="无");
+    Database(QString path,QString name)
+    {
+        m_path = path;
+        m_tablename = name;
+        m_db = openAndInit();
+    }
+    ~Database(){
+        // 析构函数中关闭数据库连接
+        m_db.close();
+    };
+    QSqlDatabase openAndInit();
+    void initTable();                                 // 初始化表格
+    // 增
+    bool add_one(const QMap<QString, QVariant> &data);
+    // 删
+    bool remove_one(const QString& condition);
+    // 改
+    bool update_one(const QMap<QString, QVariant> &data, const QString &condition);
+    // 查
+    QList<QMap<QString, QVariant>>query_data(const QStringList &columns, const QString &condition,int mod);
+    // 主表增 辅表应进行的操作
+    void info_add(const QMap<QString, QVariant> &data);
+    // info辅表 删
+    void info_remove(const QString& condition);
+    void change_table(const QString& tablename);
+private:
+    QSqlDatabase m_db;
+    QString m_path;
+    QString m_tablename;
 };
 
 #endif // DATABASE_H

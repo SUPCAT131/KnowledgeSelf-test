@@ -212,6 +212,24 @@
       </layout>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>GPT冷却中</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressBar_time">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <widget class="QTextBrowser" name="textBrowser"/>
      </item>
      <item>
@@ -305,6 +323,13 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>总进度</string>
+           </property>
+          </widget>
+         </item>
          <item>
           <widget class="QProgressBar" name="progressBar">
            <property name="value">

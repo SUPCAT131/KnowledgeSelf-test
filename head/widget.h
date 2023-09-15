@@ -25,39 +25,24 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
     void widgetInit();
-    void PythonInit();
-    void setqstion(QSqlDatabase db,int num);// 根据 [id] 设置当前 [问题]
-    void onStartClicked();// 点击提交后处理函数
-    void workQueue(int i);// py处理队列
-    QString getqustion(QSqlDatabase db,int num);// 根据 [id] 获取当前 [问题]
-    void click_num_btn(int num);    // 执行点击 自动生成的 命名为 [num] 的按钮
-    void showMessageDialog(const QString& title, const QString& text);
-    int getmaxItem(QSqlDatabase db); // 获取数据库最大的 [id] 数
-    void onShowChild();
-    void subGrad();
-    int db_get_num_byId(int num,QString item);
-    void db_sub_grade(int num,int grade);
     void click_btn(QPushButton* btn);
+    void showMessageDialog(const QString& title, const QString& text);
+    void test();
+signals:
+    void send_myAnswer(QList<int>select_list,QList<QString>answer_list,QString api);
+    void progress_hide();
+public slots:
+    void get_reslut_l(QStringList reslt_l);
+    void get_waitTime(int time);
 private:
     Ui::Widget *ui;
     QMap<QString, QPushButton*> buttonMap;
-    DB_AddItem* db_AddItem;
+    QList<int> m_selectlist;
+    QList<int> m_grade_l;
+    QList<QString> m_qstion_l;
+    QList<QString> m_answer_l;
+    QList<QString> m_result_l;
+    QList<QMap<QString, QVariant>> m_data;
+    void select_items(int select_num);  // model 1 从数据库按比例抽题（表 id 值） 并 存储于私有属性 m_selectlist 中
 };
-
-
-class Worker : public QObject
-{
-    Q_OBJECT
-
-public:
-    Worker() {}
-
-signals:
-    void workFinished();
-
-public slots:
-    void startWork(QString qstion,QString anser,int now,QString api);
-};
-
-QString send(QString q,QString a,QString api);
 #endif // WIDGET_H

@@ -13,15 +13,16 @@ class DB_AddItem : public QWidget
 
 public:
     explicit DB_AddItem(QWidget *parent = nullptr);
-    static int success;
-    static int fail;
     ~DB_AddItem();
     void init();
     void showMessageDialog(const QString& title, const QString& text);
     void status(int s,int f);
+    void set_sf();
 signals:
     void refalshWidgtInit();
 private:
+    int m_success;
+    int m_false;
     Ui::DB_AddItem *ui;
 };
 

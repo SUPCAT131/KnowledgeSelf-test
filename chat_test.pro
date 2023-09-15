@@ -16,15 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/mythread.cpp \
     src/database.cpp \
     src/db_additem.cpp \
     src/main.cpp \
-    src/msg_send_recv.cpp \
     src/widget.cpp
 
 HEADERS += \
     head/database.h \
     head/db_additem.h \
+    head/mythread.h \
     head/pythreadstatelock.h \
     head/widget.h
 
@@ -40,8 +41,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     py\testpython.py \
     版本更新 \
+    用法说明.md \
     项目技术点 \
     项目知识点 \
     项目说明
-INCLUDEPATH += C:\Users\86130\AppData\Local\Programs\Python\Python311\include
-LIBS += -LC:\Users\86130\AppData\Local\Programs\Python\Python311\libs -lpython311
+INCLUDEPATH += C:\Python311\include
+LIBS += -LC:\Python311\libs -lpython311
+
+win32-msvc* {
+    QMAKE_CXXFLAGS += /source-charset:utf-8 /execution-charset:utf-8
+}
