@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/fixadd.cpp \
     src/mythread.cpp \
     src/database.cpp \
     src/db_additem.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     src/widget.cpp
 
 HEADERS += \
+    head/fixadd.h \
     head/database.h \
     head/db_additem.h \
     head/mythread.h \
@@ -30,6 +32,7 @@ HEADERS += \
     head/widget.h
 
 FORMS += \
+    fixadd.ui \
     ui/db_additem.ui \
     ui/widget.ui
 

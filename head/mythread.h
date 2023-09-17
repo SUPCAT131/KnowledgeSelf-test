@@ -1,4 +1,4 @@
-#ifndef MYTHREAD_H
+﻿#ifndef MYTHREAD_H
 #define MYTHREAD_H
 
 #include <QObject>
@@ -11,6 +11,7 @@ class MyThread : public QThread
 public:
     explicit MyThread(QObject *parent = nullptr);
     void doWork();
+
 signals:
     // 声明你的自定义信号
     void send_result_list(QStringList result_list);
@@ -20,10 +21,11 @@ signals:
     void workFinished();
     void send_waitTime(int);
     void send_progressBar(int);
+
 public slots:
     // 声明你的自定义槽函数
     void set_intList_strList(QList<int>intList,QList<QString>strList,QString api);
-
+    void cleardata();
 private:
     QList<int> m_get_select_list;
     QList<QString> m_get_answer_list;

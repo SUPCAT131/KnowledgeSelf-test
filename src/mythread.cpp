@@ -1,4 +1,4 @@
-#include "../head/mythread.h"
+﻿#include "../head/mythread.h"
 #include "../head/pythreadstatelock.h"
 #include "../head/database.h"
 #include <Python.h>
@@ -12,6 +12,14 @@
 
 MyThread::MyThread(QObject *parent)
 {
+}
+
+void MyThread::cleardata()
+{
+    m_get_select_list.clear();
+    m_get_answer_list.clear();
+    m_result_list.clear();
+    m_api.clear();
 }
 
 void MyThread::run()
