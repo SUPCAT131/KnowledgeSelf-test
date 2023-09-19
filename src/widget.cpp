@@ -234,6 +234,10 @@ Widget::Widget(QWidget *parent)
         db_AddItem->show();
         showMessageDialog("提示","注意 添加成功后会[重置]答题界面");
         connect(db_AddItem,&DB_AddItem::refalshWidgtInit,this,&Widget::widgetInit);
+        connect(db_AddItem, &DB_AddItem::destroyed, this, [=]() {
+            delete db_AddItem;
+        });
+
     });
     MyThread *thread = new MyThread;
     connect(this,&Widget::clear_data,thread,&MyThread::cleardata);
@@ -374,7 +378,7 @@ Widget::~Widget()
 }
 void Widget::widgetInit()
 {
-//    this->PythonInit();
+
     ui->progressBar_time->hide();
     ui->label_5->hide();
 
@@ -401,8 +405,6 @@ void Widget::widgetInit()
         qDebug() << "No data found."<<__LINE__<<__func__;
     }
      // 获取最大条目数 end
-
-    click_btn(ui->pB_start);// 重置 抽取
 
     ui->pB_start->setEnabled(true);
     ui->spinBox->setValue(0);
